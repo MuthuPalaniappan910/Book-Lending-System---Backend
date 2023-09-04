@@ -1,0 +1,10 @@
+#Files to be removed before pushing to git
+
+.classpath
+.mvn/
+.project
+.settings/
+bin/
+mvnw
+mvnw.cmd
+target/
