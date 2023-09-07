@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType; 
 import jakarta.persistence.Id; 
 import jakarta.persistence.JoinColumn; 
-import jakarta.persistence.OneToOne; 
+import jakarta.persistence.ManyToOne; 
 import jakarta.persistence.Table; 
  
 @Entity 
@@ -24,7 +24,7 @@ public class Feedback {
     @Column (name = "BOOK_ID", nullable = false) 
     private Long bookId; 
  
-    @OneToOne 
+    @ManyToOne 
     @JoinColumn (name = "CUSTOMER_ID", nullable = false) 
     private Customer customer; 
  
