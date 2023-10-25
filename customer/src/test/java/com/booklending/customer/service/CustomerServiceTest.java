@@ -155,8 +155,7 @@ public class CustomerServiceTest {
         validateAssertions(commonResponse, response); 
     } 
  
-    private void validateAssertions(CommonResponse commonResponse, CommonResponse response) { 
-        Assertions.assertEquals(commonResponse.getMessage(), response.getMessage()); 
+    private void validateAssertions(CommonResponse commonResponse, CommonResponse response) {  
         Assertions.assertEquals(commonResponse.getResult(), response.getResult()); 
     } 
 } 

@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service; 
  
 import java.util.ArrayList; 
-import java.util.List; 
+import java.util.List;
+import java.util.Objects; 
  
 @Service 
 public class BookDamageServiceImpl implements BookDamageService{ 
@@ -36,10 +37,12 @@ public class BookDamageServiceImpl implements BookDamageService{
     @Override 
     public void saveDetailsOfBookDamage(List<NewBookDamageRequestDto> newBookDamageRequestDtoList, Book book) { 
         newBookDamageRequestDtoList.forEach (bookDamageDetails -> { 
+        	if(Objects.nonNull(bookDamageDetails.getDamageDescription())) {
             BookDamage bookDamage = new BookDamage(); 
             bookDamage.setDamageDescription(bookDamageDetails.getDamageDescription()); 
             bookDamage.setBook(book); 
             bookDamageRepository.saveAndFlush(bookDamage); 
+        	}
         }); 
  
     } 

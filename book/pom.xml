@@ -16,6 +16,9 @@
    <properties> 
       <java.version>17</java.version> 
       <spring-cloud.version>2022.0.4</spring-cloud.version> 
+      <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+      <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+      <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
    </properties> 
    <dependencies> 
       <dependency> 
@@ -89,6 +92,12 @@
          <groupId>org.springframework.cloud</groupId> 
          <artifactId>spring-cloud-starter-openfeign</artifactId> 
       </dependency> 
+      
+      <dependency>
+		<groupId>org.jacoco</groupId>
+      	<artifactId>jacoco-maven-plugin</artifactId>
+      	<version>0.8.6</version>
+      </dependency>
  
    </dependencies> 
  
@@ -110,7 +119,26 @@
             <groupId>org.springframework.boot</groupId> 
             <artifactId>spring-boot-maven-plugin</artifactId> 
          </plugin> 
-      </plugins> 
+  		 <plugin>
+			<groupId>org.jacoco</groupId>
+      		<artifactId>jacoco-maven-plugin</artifactId>
+      		<version>0.8.10</version>
+      		<executions>
+				  <execution>
+					<goals>
+					  	<goal>prepare-agent</goal>
+				  	</goals>
+				  </execution>
+				 <execution>
+					<id>report</id>
+					<phase>prepare-package</phase>
+					<goals>
+					  	<goal>report</goal>
+				  	</goals>
+				  </execution>
+			</executions>
+		 </plugin>
+	 </plugins> 
    </build> 
  
 </project> 

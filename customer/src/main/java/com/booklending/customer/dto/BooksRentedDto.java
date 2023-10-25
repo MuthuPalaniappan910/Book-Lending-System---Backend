@@ -8,8 +8,35 @@ public class BooksRentedDto {
     private LocalDate startDate; 
     private LocalDate endDate; 
     private String title; 
+    private Boolean isRenewable;
+    private Long lendId;
+    private Double additionalAmountForRenew;
  
-    public Long getFromCustomerId() { 
+    public Boolean getIsRenewable() {
+		return isRenewable;
+	}
+
+	public void setIsRenewable(Boolean isRenewable) {
+		this.isRenewable = isRenewable;
+	}
+
+	public Long getLendId() {
+		return lendId;
+	}
+
+	public void setLendId(Long lendId) {
+		this.lendId = lendId;
+	}
+
+	public Double getAdditionalAmountForRenew() {
+		return additionalAmountForRenew;
+	}
+
+	public void setAdditionalAmountForRenew(Double additionalAmountForRenew) {
+		this.additionalAmountForRenew = additionalAmountForRenew;
+	}
+
+	public Long getFromCustomerId() { 
         return fromCustomerId; 
     } 
  
