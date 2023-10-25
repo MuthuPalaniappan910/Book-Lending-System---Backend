@@ -210,10 +210,10 @@ public class BookControllerTest {
         //Given 
         commonResponse.setResult(Boolean.FALSE); 
         commonResponse.setMessage(ApplicationConstants.INVALID_BOOK_ID); 
-        Mockito.when(bookService.getBookAndDamageDetails(1L)).thenReturn(new BookDetailsDto()); 
+        Mockito.when(bookService.getBookAndDamageDetails(1L, 1L)).thenReturn(new BookDetailsDto()); 
  
         //When 
-        ResponseEntity<BookDetailsDto> response = bookController.getBookAndDamageDetails(1L); 
+        ResponseEntity<BookDetailsDto> response = bookController.getBookAndDamageDetails(1L, 1L); 
  
         //Then 
         Assertions.assertNotNull(response.getBody()); 

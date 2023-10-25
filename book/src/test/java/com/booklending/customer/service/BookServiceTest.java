@@ -80,6 +80,7 @@ public class BookServiceTest {
         book.setPerDayPrice(2.5d); 
         book.setTotalStock(1); 
         book.setRented(0); 
+	   book.setCustomerId(1L); 
  
         bookList = new ArrayList<>(); 
         bookList.add(book); 
@@ -185,7 +186,7 @@ public class BookServiceTest {
         Mockito.when(bookRepository.findByBookId(1L)).thenReturn(null); 
  
         //When 
-        CommonResponse response = bookService.deleteBook(1L); 
+        CommonResponse response = bookService.deleteBook(1L, 1L); 
  
         //Then 
         validateCommonResponse(commonResponse, response); 
@@ -202,7 +203,7 @@ public class BookServiceTest {
         Mockito.doNothing().when(bookRepository).deleteByBookId(1L); 
  
         //When 
-        CommonResponse response = bookService.deleteBook(1L); 
+        CommonResponse response = bookService.deleteBook(1L, 1L); 
  
         //Then 
         validateCommonResponse(commonResponse, response); 

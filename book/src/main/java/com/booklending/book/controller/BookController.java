@@ -41,11 +41,12 @@ public class BookController {
  
     @Autowired 
     private LendService lendService; 
- 
-    @DeleteMapping("/{bookId}") 
-    public ResponseEntity<CommonResponse> deleteBook(@PathVariable Long bookId) { 
-        return new ResponseEntity<>(bookService.deleteBook(bookId), HttpStatus.OK); 
-    } 
+
+ 	@DeleteMapping("/{bookId}/delete/{customerId}") 
+	public ResponseEntity<CommonResponse> deleteBook(@PathVariable Long bookId, @PathVariable Long customerId) { 
+    	return new ResponseEntity<>(bookService.deleteBook(bookId, customerId), HttpStatus.OK); 
+} 
+
  
     @PostMapping("/new") 
     public ResponseEntity<NewBookResponseDto> addNewBook(@RequestBody List<NewBookRequestDto> newBookRequestDtos) { 

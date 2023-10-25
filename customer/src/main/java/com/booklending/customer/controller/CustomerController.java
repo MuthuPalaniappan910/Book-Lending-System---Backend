@@ -14,7 +14,10 @@ import com.booklending.customer.service.CustomerService;
 import com.booklending.customer.service.FeedbackService; 
 import com.booklending.customer.service.TokenService; 
 import com.booklending.customer.utils.ApplicationConstants; 
-import com.booklending.customer.utils.Claim; 
+import com.booklending.customer.utils.Claim;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+
 import jakarta.validation.Valid; 
 import org.springframework.beans.BeanUtils; 
 import org.springframework.beans.factory.annotation.Autowired; 
@@ -67,6 +70,9 @@ public class CustomerController {
     } 
  
     @GetMapping("/{customerId}/dashboard") 
+    @HystrixCommand (fallbackMethod = "dashboardFallBack", commandProperties = {
+    		@HystrixProperty(name = "execution.isolation.thread.timeoutInMIlliSeconds" , value = "5000")
+    })
     public ResponseEntity<DashboardResponseDto> getCustomerDashboard(@PathVariable Long customerId) { 
         DashboardResponseDto response = new DashboardResponseDto(); 
         DashboardResponseDto dashboardResponseDto = bookApplicationService.getCustomerDashboard(customerId); 
@@ -114,4 +120,8 @@ public class CustomerController {
         commonResponse.setResult(result); 
         return commonResponse; 
     } 
+    
+    private CommonResponse dashBoardFallback() {
+    	return seetCOmmonResponse(Boolean.FALSE, ApplicationConstants.TIMEOUT);
+    }
 } 

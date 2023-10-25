@@ -34,18 +34,21 @@ public class BookServiceImpl implements BookService{
     @Autowired 
     private LendService lendService; 
  
-    @Override 
-    @Transactional 
-    public CommonResponse deleteBook(Long bookId) { 
-        Book book = getBookDetailsByBookId(bookId); 
-        if (Objects.nonNull(book)) { 
-            bookDamageService.deleteBookDamages(book); 
-            lendService.deleteBookLend(book); 
-            bookRepository.deleteByBookId(bookId); 
-            return setCommonResponse(Boolean.TRUE, ApplicationConstants.BOOK_DELETED_SUCCESSFULLY); 
-        } 
-        return setCommonResponse(Boolean.FALSE, ApplicationConstants.INVALID_BOOK_ID); 
-    } 
+    @Override 
+     @Transactional 
+     public CommonResponse deleteBook(Long bookId, Long customerId) { 
+   	Book book = getBookDetailsByBookId(bookId); 
+    	if (Objects.nonNull(book)) { 
+        	if (book.getCustomerId().equals(customerId)) { 
+            		bookDamageService.deleteBookDamages(book); 
+            		lendService.deleteBookLend(book); 
+            		bookRepository.deleteByBookId(bookId); 
+            		return setCommonResponse(Boolean.TRUE, 						ApplicationConstants.BOOK_DELETED_SUCCESSFULLY); 
+        	} 
+        	return setCommonResponse(Boolean.FALSE, 				ApplicationConstants.DELETE_BOOK_AUTHORIZATION); 
+    } 
+    return setCommonResponse(Boolean.FALSE, 	ApplicationConstants.INVALID_BOOK_ID); 
+}
  
     @Override 
     public NewBookResponseDto addNewBook(List<NewBookRequestDto> newBookRequestDtos) { 

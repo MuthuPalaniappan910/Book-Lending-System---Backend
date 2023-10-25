@@ -29,4 +29,5 @@ public class ApplicationConstants {
     public static final String BEARER = "Bearer " ; 
     public static final String EMPTY_DASHBOARD = "No books furnished or took for rent" ; 
     public static final String FEEDBACK_SAVE_SUCCESSFULLY = "Thanks for the feedback" ; 
+    public static final String TIMEOUT = "Request fails. Took longer time to respond" ; 
 } 

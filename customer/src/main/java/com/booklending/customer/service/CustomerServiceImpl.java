@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
         BeanUtils.copyProperties (newCustomerRequestDto, customer); 
         customer.setPassword(encodePassword(newCustomerRequestDto.getPassword())); 
         customerRepository.save(customer); 
-        return setCommonResponse(Boolean.TRUE, ApplicationConstants.CUSTOMER_REGISTERED_SUCCESSFULLY); 
+        return setCommonResponse(Boolean.TRUE, String.valueOf(customer.getCustomerId())); 
     } 
  
     @Override 
@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
             return setCommonResponse(Boolean.FALSE, ApplicationConstants.CUSTOMER_REGISTRATION_MESSAGE); 
         } 
         if (passwordEncoder.matches(loginRequestDto.getPassword(), customer.getPassword())) { 
-            return setCommonResponse(Boolean.TRUE, ApplicationConstants.SUCCESSFUL_LOGIN); 
+            return setCommonResponse(Boolean.TRUE, String.valueOf(customer.getCustomerId())); 
         } 
         return setCommonResponse(Boolean.FALSE, ApplicationConstants.INCORRECT_CREDENTIALS); 
  

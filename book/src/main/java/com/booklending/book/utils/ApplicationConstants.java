@@ -21,5 +21,7 @@ public class ApplicationConstants {
     public static final String HI = "Hi "; 
     public static final String BOOK_MESSAGE = ", book titled "; 
     public static final String NOTIFICATION = " from book lending application has to be submitted in 2 days. Please renew to extend"; 
+     public static final String DELETE_BOOK_AUTHORIZATION = "Not Authorized to Delete the Book "; 
+
  
 } 

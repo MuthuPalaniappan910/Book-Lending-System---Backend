@@ -11,7 +11,7 @@ import java.util.List;
  
 public interface BookService { 
  
-    CommonResponse deleteBook(Long bookId); 
+    CommonResponse deleteBook(Long bookId, Long customerId); 
  
     NewBookResponseDto addNewBook(List<NewBookRequestDto> newBookRequestDtos); 
  
